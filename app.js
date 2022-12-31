@@ -18,40 +18,15 @@ function getComputerChoice() {
     return choices[randomNumber];
 }
 
-function convertToWord (letter) {
-    if (letter === "r") return "ROCK";
-    if (letter === "p") return "PAPER";
-    else return "SCISSOR";
+function convertToWord(letter) {
+    if (letter === "r") {
+        return "Rock"
+    } else if (letter === "p") {
+        return "Paper"
+    } else { 
+        return "Scissors"
+    }
 }
-
-function win(userChoice, computerChoice) {
-    userScore++;
-    userScoreEl.innerHTML = userScore;
-    compScoreEl.innerHTML = compScore;
-    // const smallUserWord = "user".fontsize(3).sub();
-    // const smallComputerWord = "computer".fontsize(3).sub();
-    resultEl.innerHTML = `${convertToWord(userChoice)} beats ${convertToWord(computerChoice)}. You win!!!`;
-    console.log(resultEl.innerHTML);
-}
-
-function lose(userChoice, computerChoice) {
-    compScore++;
-    userScoreEl.innerHTML = userScore;
-    compScoreEl.innerHTML = compScore;
-    resultEl.textContent = `${convertToWord(userChoice)} loses to ${convertToWord(computerChoice)}. You Lose...`;
-    console.log(convertToWord(userChoice));
-}
-
-function tie(userChoice, computerChoice) {
-    tiedScore++;
-    tiedScoreEl.innerHTML = tiedScore;
-    resultEl.innerHTML = userChoice + " equals " + computerChoice + ". Drawww";
-    console.log(resultEl.innerHTML);
-}
-
-
-
-
 
 function game(userChoice) {
     const computerChoice = getComputerChoice();
@@ -61,25 +36,66 @@ function game(userChoice) {
         case "rs": 
         case "pr":
         case "sp":
+            resultEl.innerHTML = `${convertToWord(userChoice)} beats ${convertToWord(computerChoice)}`;     
             win();
             break;
         case "rp": 
         case "ps":
         case "sr":
+            resultEl.innerHTML = `${convertToWord(userChoice)} loses to ${convertToWord(computerChoice)}`;
             lose();
             break;
         case "rr": 
         case "pp":
         case "ss":
+            resultEl.innerHTML = `${convertToWord(userChoice)} equals ${convertToWord(computerChoice)}. Issa Draw...`;
             tie();
             break;
     }
 }
 
+function win(userChoice, computerChoice) {
+    userScore++;
+    userScoreEl.innerHTML = userScore;
+    tiedScoreEl.innerHTML = tiedScore;
+    compScoreEl.innerHTML = compScore;
+    // const smallUserWord = "user".fontsize(3).sub();
+    // const smallComputerWord = "computer".fontsize(3).sub();
+    // let userrr = convertToWord(userChoice);
+    // console.log("This is userrr: " + userrr);
+    // let comppp = convertToWord(computerChoice);
+    // resultEl.innerHTML = userChoice + "beats" + computerChoice + " . You win!!!";
+    // console.log(resultEl.textContent);
+}
+
+function lose(userChoice, computerChoice) {
+    compScore++;
+    userScoreEl.innerHTML = userScore;
+    tiedScoreEl.innerHTML = tiedScore;
+    compScoreEl.innerHTML = compScore;
+    // resultEl.innerHTML = userChoice + " loses to " + computerChoice + ". You Lose...";
+    console.log(resultEl.innerHTML);
+}
+
+function tie(userChoice, computerChoice) {
+    tiedScore++;
+    userScoreEl.innerHTML = userScore;
+    tiedScoreEl.innerHTML = tiedScore;
+    compScoreEl.innerHTML = compScore;
+    // resultEl.innerHTML = userChoice + "equals " + computerChoice + ". Drawww!";    
+}
+
+
+
+
+
+
+
 
 function main() {
     rockButton.addEventListener("click", function(){
         game("r");
+        console.log("Rock has been chosen");
     })
 
     paperButton.addEventListener("click", function(){
@@ -90,13 +106,7 @@ function main() {
         game("s");
     })
 }
-
-function convertToWord(letter) {
-    if (letter === "r") return "ROCK";
-    if (letter === "r") return "PAPER";
-    return "SCISSORS";
-    
-}
-
 main();
+
+
 
